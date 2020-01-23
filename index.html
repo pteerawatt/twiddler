@@ -21,15 +21,18 @@
         $home.appendTo($body);
         $home.css("font-size", "30px");
         $home.on('click', function() {
-          $('.actualTweet').show();
+          $('.actualTweet').show(function () {
+            $('.userSpecific').hide();
+          });
+          
         });
 
 
         var $tweetCont = $('<div class="actualTweet"></div>');
         $tweetCont.appendTo($body);
 
-        var $userTweet = $('<div class ="userTweet"></div>');
-        $userTweet.appendTo($body);
+        var $userSpecific = $('<div class ="userSpecific"></div>');
+        $userSpecific.appendTo($body);
 
 
         var index = streams.home.length - 1;
@@ -51,8 +54,6 @@
           $userName.text('@' + tweet.user + ':');
           $userName.prependTo($tweetBox);
           index -= 1;
-
-          
         }
 
         $refresh.click(function() {
@@ -76,7 +77,31 @@
 
         $('a').on('click', function() {
           $('.actualTweet').toggle(function(){
+            $userSpecific.show();
+            var $userTweets = $('<div><div>');
+            $userTweets.text('user specific tweets');
+            $userTweets.prependTo($userSpecific);
 
+            // var index = streams.users.shawndrost - 1;
+            // while(index >= 0){
+            //   var $userTweetBox = $('<div><div>');
+            //   $userTweetBox.prependTo($userSpecific);
+            //   $userTweetBox.css('border', 'solid');
+            //   $userTweetBox.css('margin', '10px');
+            //   $userTweetBox.css('padding', '10px');
+
+            //   var userTweet = streams.user.shawndrost[index];
+            //   var $userTweet = $('<div></div>');
+            //   $userTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']');
+            //   $userTweet.prependTo($userTweetBox);
+            //   // $tweet.css("padding", "30px");
+            //   // $tweet.css("margin", "5px");
+            //   // $tweet.css("border", "solid");
+            //   var $userName = $('<a></a>');
+            //   $userName.text('@' + tweet.user + ':');
+            //   $userName.prependTo($userTweetBox);
+            //   index -= 1;
+            // }
           });
 
         });
