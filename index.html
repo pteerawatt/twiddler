@@ -50,7 +50,7 @@
           // $tweet.css("padding", "30px");
           // $tweet.css("margin", "5px");
           // $tweet.css("border", "solid");
-          var $userName = $('<a></a>');
+          var $userName = $('<a class="user"></a>');
           $userName.text('@' + tweet.user + ':');
           $userName.prependTo($tweetBox);
           index -= 1;
@@ -69,19 +69,18 @@
           $newTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']'); 
           $newTweet.prependTo($tweetBox);
           
-          var $userName = $('<a></a>');
+          var $userName = $('<a class="user"></a>');
           $userName.text('@' + tweet.user + ':');
           $userName.prependTo($tweetBox);
           
         });
 
-        $('a').on('click', function() {
+        $('.user').on('click', function() {
           $('.actualTweet').toggle(function(){
             $userSpecific.show();
-            var $TestuserTweets = $('<div><div>');
-            $TestuserTweets.text('user specific tweets');
-            $TestuserTweets.prependTo($userSpecific);
-
+            // var $TestuserTweets = $('<div><div>');
+            // $TestuserTweets.text('user specific tweets');
+            // $TestuserTweets.prependTo($userSpecific);
             var index = streams.users.shawndrost.length - 1;
             while(index >= 0){
               var $userTweetBox = $('<div><div>');
@@ -92,13 +91,13 @@
 
               var userTweet = streams.users.shawndrost[index];
               var $userTweet = $('<div></div>');
-              $userTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']');
+              $userTweet.text('' + this.message + ' [posted: ' + this.created_at +']');
               $userTweet.prependTo($userTweetBox);
               // $tweet.css("padding", "30px");
               // $tweet.css("margin", "5px");
               // $tweet.css("border", "solid");
               var $userName = $('<a></a>');
-              $userName.text('@' + tweet.user + ':');
+              $userName.text('@' + this.user + ':');
               $userName.prependTo($userTweetBox);
               index -= 1;
             }
