@@ -16,10 +16,20 @@
         $refresh.appendTo($body);
         $refresh.css("font-size", "30px");
         
+        var $home = $('<button class="homePage"></button>');
+        $home.text('Home Page!');
+        $home.appendTo($body);
+        $home.css("font-size", "30px");
+        $home.on('click', function() {
+          $('.actualTweet').show();
+        });
 
-        var $tweetCont = $('<div class="tweetCont"></div>');
+
+        var $tweetCont = $('<div class="actualTweet"></div>');
         $tweetCont.appendTo($body);
 
+        var $userTweet = $('<div class ="userTweet"></div>');
+        $userTweet.appendTo($body);
 
 
         var index = streams.home.length - 1;
@@ -31,13 +41,13 @@
           $tweetBox.css('padding', '10px');
 
           var tweet = streams.home[index];
-          var $tweet = $('<div id="actualTweet"></div>');
+          var $tweet = $('<div></div>');
           $tweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']');
           $tweet.prependTo($tweetBox);
           // $tweet.css("padding", "30px");
           // $tweet.css("margin", "5px");
           // $tweet.css("border", "solid");
-          var $userName = $('<button></button>');
+          var $userName = $('<a></a>');
           $userName.text('@' + tweet.user + ':');
           $userName.prependTo($tweetBox);
           index -= 1;
@@ -52,20 +62,23 @@
           $tweetBox.css('margin', '10px');
           $tweetBox.css('padding', '10px');
 
-          var $newTweet = $('<div calss="newTweet"></div>');
+          var $newTweet = $('<div></div>');
           var index = streams.home.length - 1;
           var tweet = streams.home[index];
           $newTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']'); 
           $newTweet.prependTo($tweetBox);
           
-          var $userName = $('<button></button>');
+          var $userName = $('<a></a>');
           $userName.text('@' + tweet.user + ':');
           $userName.prependTo($tweetBox);
           
         });
 
-        $tweetBox.click(function() {
-          $tweetBox.addClass('animated bounce');
+        $('a').on('click', function() {
+          $('.actualTweet').toggle(function(){
+
+          });
+
         });
       });
 
