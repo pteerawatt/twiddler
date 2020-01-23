@@ -11,22 +11,14 @@
         var $body = $('body');
         $body.html('');
 
-        // var $tweetCont = $('.tweetCont');
-        // $tweetCont.html('');
-        // var $test = $('<div></div>');
-        // $test.text('Testing');
-
-        var $tweetCont = $('<div class="tweetCont"></div>');
-        $tweetCont.prependTo($body);
-
         var $refresh = $('<button id="refresh"></button>');
         $refresh.text('New Tweet!');
-        $refresh.prependTo($body);
+        $refresh.appendTo($body);
         $refresh.css("font-size", "30px");
-        $('#refresh').click(function() {
-          $('#actualTweet').appendTo($tweetCont);
-          
-        });
+        
+
+        var $tweetCont = $('<div class="tweetCont"></div>');
+        $tweetCont.appendTo($body);
 
         var index = streams.home.length - 1;
         while(index >= 0){
@@ -41,6 +33,15 @@
           
         }
 
+        $refresh.click(function() {
+          var $newTweet = $('<div calss="newTweet"></div>');
+          var index = streams.home.length - 1;
+          var tweet = streams.home[index];
+          $newTweet.text('@' + tweet.user + ': ' + tweet.message + ' [posted: ' + tweet.created_at +']'); 
+          $newTweet.prependTo($tweetCont);
+          
+          
+        });
 
       });
 
