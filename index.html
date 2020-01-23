@@ -6,19 +6,41 @@
   </head>
   <body>
     <script>
-
       $(document).ready(function(){
+        
         var $body = $('body');
         $body.html('');
+
+        // var $tweetCont = $('.tweetCont');
+        // $tweetCont.html('');
+        // var $test = $('<div></div>');
+        // $test.text('Testing');
+
+        var $tweetCont = $('<div class="tweetCont"></div>');
+        $tweetCont.prependTo($body);
+
+        var $refresh = $('<button id="refresh"></button>');
+        $refresh.text('New Tweet!');
+        $refresh.prependTo($body);
+        $refresh.css("font-size", "30px");
+        $('#refresh').click(function() {
+          $('#actualTweet').appendTo($tweetCont);
+          
+        });
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          var $tweet = $('<div id="actualTweet"></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' [posted: ' + tweet.created_at +']');
+          $tweet.prependTo($tweetCont);
+          // $tweet.css("padding", "30px");
+          // $tweet.css("margin", "5px");
+          // $tweet.css("border", "solid");
           index -= 1;
+          
         }
+
 
       });
 
