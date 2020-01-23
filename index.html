@@ -20,29 +20,53 @@
         var $tweetCont = $('<div class="tweetCont"></div>');
         $tweetCont.appendTo($body);
 
+
+
         var index = streams.home.length - 1;
         while(index >= 0){
+          var $tweetBox = $('<div><div>');
+          $tweetBox.prependTo($tweetCont);
+          $tweetBox.css('border', 'solid');
+          $tweetBox.css('margin', '10px');
+          $tweetBox.css('padding', '10px');
+
           var tweet = streams.home[index];
           var $tweet = $('<div id="actualTweet"></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' [posted: ' + tweet.created_at +']');
-          $tweet.prependTo($tweetCont);
+          $tweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']');
+          $tweet.prependTo($tweetBox);
           // $tweet.css("padding", "30px");
           // $tweet.css("margin", "5px");
           // $tweet.css("border", "solid");
+          var $userName = $('<button></button>');
+          $userName.text('@' + tweet.user + ':');
+          $userName.prependTo($tweetBox);
           index -= 1;
+
           
         }
 
         $refresh.click(function() {
+          var $tweetBox = $('<div><div>');
+          $tweetBox.prependTo($tweetCont);
+          $tweetBox.css('border', 'solid');
+          $tweetBox.css('margin', '10px');
+          $tweetBox.css('padding', '10px');
+
           var $newTweet = $('<div calss="newTweet"></div>');
           var index = streams.home.length - 1;
           var tweet = streams.home[index];
-          $newTweet.text('@' + tweet.user + ': ' + tweet.message + ' [posted: ' + tweet.created_at +']'); 
-          $newTweet.prependTo($tweetCont);
+          $newTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']'); 
+          $newTweet.prependTo($tweetBox);
           
+          var $userName = $('<button></button>');
+          $userName.text('@' + tweet.user + ':');
+          $userName.prependTo($tweetBox);
           
         });
 
+        $tweetBox.click(function() {
+          $tweetBox.addClass('animated bounce');
+        });
       });
 
     </script>
