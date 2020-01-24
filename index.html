@@ -69,7 +69,7 @@
           $newTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']'); 
           $newTweet.prependTo($tweetBox);
           
-          var $userName = $('<a class="user"></a>');
+          var $userName = $('<a></a>');
           $userName.text('@' + tweet.user + ':');
           $userName.prependTo($tweetBox);
           
@@ -82,7 +82,8 @@
             // $TestuserTweets.text('user specific tweets');
             // $TestuserTweets.prependTo($userSpecific);
             });
-          var index = streams.users.shawndrost.length - 1;
+          var tweetUser = 'shawndrost';
+          var index = streams.users[tweetUser].length - 1;
           while(index >= 0){
             var $userTweetBox = $('<div><div>');
             $userTweetBox.prependTo($userSpecific);
@@ -90,15 +91,15 @@
             $userTweetBox.css('margin', '10px');
             $userTweetBox.css('padding', '10px');
 
-            var userTweet = streams.users.shawndrost[index];
+            var userTweet = streams.users[tweetUser][index];
             var $userTweet = $('<div></div>');
-            $userTweet.text('' + this.message + ' [posted: ' + this.created_at +']');
+            $userTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']');
             $userTweet.prependTo($userTweetBox);
               // $tweet.css("padding", "30px");
               // $tweet.css("margin", "5px");
               // $tweet.css("border", "solid");
             var $userName = $('<a></a>');
-            $userName.text('@' + this.user + ':');
+            $userName.text('@' + tweet.user + ':');
             $userName.prependTo($userTweetBox);
             index -= 1;
           }
