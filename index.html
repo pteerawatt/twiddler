@@ -51,7 +51,7 @@
           // $tweet.css("margin", "5px");
           // $tweet.css("border", "solid");
           var $userName = $('<a class="user"></a>');
-          $userName.text('@' + tweet.user + ':');
+          $userName.text(tweet.user);
           $userName.prependTo($tweetBox);
           index -= 1;
         }
@@ -70,7 +70,7 @@
           $newTweet.prependTo($tweetBox);
           
           var $userName = $('<a></a>');
-          $userName.text('@' + tweet.user + ':');
+          $userName.text(tweet.user);
           $userName.prependTo($tweetBox);
           
         });
@@ -93,13 +93,13 @@
 
             var userTweet = streams.users[tweetUser][index];
             var $userTweet = $('<div></div>');
-            $userTweet.text('' + tweet.message + ' [posted: ' + tweet.created_at +']');
+            $userTweet.text('' + userTweet.message + ' [posted: ' + userTweet.created_at +']');
             $userTweet.prependTo($userTweetBox);
               // $tweet.css("padding", "30px");
               // $tweet.css("margin", "5px");
               // $tweet.css("border", "solid");
             var $userName = $('<a></a>');
-            $userName.text('@' + tweet.user + ':');
+            $userName.text(userTweet.user);
             $userName.prependTo($userTweetBox);
             index -= 1;
           }
